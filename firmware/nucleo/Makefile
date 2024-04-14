@@ -1,13 +1,11 @@
-# export PATH=$PATH:/bin:/usr/local/bin/:../../venv/bin:/usr/bin/:.
-
-# --- automatically set ---
-#DEV=/dev/cu.usbmodem33203
-#DEV=/dev/ttyACM0
-
-#FLASH=/media/efabless/PYBFLASH/
+# Nucleo Flash volume path
 FLASH=/Volumes/PYBFLASH/
+
+# Serial number of STM Device
+# --- set automatically ---
 DEV=$(shell mpremote connect list | grep STLink | cut -f 1 -d ' ')
-#COPY_CMD=rshell --port ${DEV} cp
+
+# Copy command
 COPY_CMD=cp
 
 # cross compile python to micropython bin.
@@ -25,7 +23,6 @@ compile:
 
 # runs script from the local filesystem
 reset: check_device
-	#mpremote connect ${DEV} soft-reset
 	mpremote connect ${DEV} exec "import machine; machine.reset()"
 
 # runs script from the local filesystem
@@ -33,8 +30,6 @@ version: check_device
 	@mpremote connect ${DEV} exec "import io_config; io_config.version()"
 
 # run io_config test to characterize a new part
-# alternate -- mpremote connect ${DEV} exec "import io_config; io_config.run()"
-# alternate -- mpremote connect ${DEV} exec "import machine; machine.reset()"
 run: check_device check_part
 	mpremote connect ${DEV} exec "import io_config; io_config.run('$(PART)', $(VOLTAGE))"
 
@@ -142,26 +137,19 @@ setup: check-python
 
 # ---- targets for building hex file
 
-#TOOLCHAIN_PATH=/foss/tools/riscv-gnu-toolchain-rv32i/217e7f3debe424d61374d31e33a091a630535937/bin/
 TOOLCHAIN_PATH=/opt/homebrew/opt/riscv-gnu-toolchain/bin/
-#TOOLCHAIN_PATH=/opt/riscv32imc/bin/
 
 # Set the prefix for `riscvXX-unknown-elf-*`
 # On installations using `multilib`, this will be `riscv64` even for compiling to 32-bit targets
 TOOLCHAIN_PREFIX=riscv64
-#TOOLCHAIN_PREFIX=riscv32-unknown-linux-gnu
 
 SED_CMD=sed -i'.orig' -e
-#SED_CMD=sed -ie
 
 .SUFFIXES:
 
 PATTERN = config_io_o
 
 hex:  ${PATTERN:=.hex}
-
-#gpio_config_data.c: gpio_config_def.py gpio_config_io.py
-#	python3 ../gpio_config/gpio_config_builder.py
 
 %.elf: %.c ../sections.lds ../crt0_vex.S ./gpio_config_data.c ./send_packet.c
 	#$(TOOLCHAIN_PATH)riscv32-unknown-linux-gnu-gcc -I../ -I../generated/ -O0 -mabi=ilp32 -march=rv32i_zicsr -D__vexriscv__ -Wl,-Bstatic,-T,../sections.lds,--strip-debug -ffreestanding -nostdlib -o $@ ../crt0_vex.S ../isr.c ../gpio_program.c $<

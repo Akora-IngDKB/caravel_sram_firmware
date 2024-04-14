@@ -51,15 +51,6 @@ or scan the QR code...
 <img src="docs/caravel+nucleo.jpg" alt="alt text" width="445"/></div>
 
 
-### Install Toolchain for Compiling Code
-
-#### For Mac
-https://github.com/riscv/homebrew-riscv
-
-#### For Linux
-https://github.com/riscv/riscv-gnu-toolchain
-
-
 ### INSTALLATION
 
 1. Install the required tools including **mpremote**, **mpy-cross**, **rshell** and **pyftdi**.  The diagnostic runs on a customized
