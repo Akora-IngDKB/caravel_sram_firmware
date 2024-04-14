@@ -66,4 +66,4 @@ This will delete old compiled files, recompile the firmware and upload to Carave
 | --------------- | ------------------ | ------------------ |
 | SRAM Blk/Port 0 | :white_check_mark: | :white_check_mark: |
 | SRAM Blk/Port 1 | N/A                | :x:                |
-| IO Peripheral   | N/A                | :x:                |
+| IO Peripheral   | :x:                | N/A                |
