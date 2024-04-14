@@ -29,8 +29,8 @@ This firmware writes data to the SRAM and then reads the data to control the LED
 ### Makefile Important Info !!! (Read before working on Nucleo)
 - Set the FLASH mount path in the nucleo [Makefile](firmware/nucleo/Makefile).
 ```Makefile
-# Nucleo Flash volume path  (Line 1)
-FLASH=/Volumes/PYBFLASH/  # (Line 2)
+# Nucleo Flash volume path          # (Line 1)
+FLASH=/Volumes/PYBFLASH/            # (Line 2)
 ```
  - If running on Windows or Linux, uncomment Line 134.
 ```Makefile
@@ -60,11 +60,10 @@ $ make clean flash_nucleo
 ```
 This will delete old compiled files, recompile the firmware and upload to Caravel SoC.
 
-- 
-
 
 ## Findings
-| Part         | Write | Read |
-| ------------ | --------------------------- | ---- |
-| SRAM0 Port 0 | <ul><li> - [x] . </li></ul> | - [x] . |
-| SRAM0 Port 1 | <ul><li> - [x] </li></ul> | - [x] . |
+| Part            | Write              | Read               |
+| --------------- | ------------------ | ------------------ |
+| SRAM Blk/Port 0 | :white_check_mark: | :white_check_mark: |
+| SRAM Blk/Port 1 | N/A                | :x:                |
+| IO Peripheral   | N/A                | :x:                |

@@ -7,17 +7,17 @@
 
 
 // Define SRAM BLK 0 Addr 0
-#define reg_wb_sram0_addr0   (*(volatile uint32_t*)0x30000000)
+#define reg_wb_sram0_addr0   (*(volatile uint32_t*) 0x30000000)
 // Define SRAM BLK 0 Addr 1
-#define reg_wb_sram0_addr1   (*(volatile uint32_t*)0x30000004)
+#define reg_wb_sram0_addr1   (*(volatile uint32_t*) 0x30000004)
 
 // Define SRAM BLK 1 Addr 0
-#define reg_wb_sram1_addr0   (*(volatile uint32_t*)0x30100000)
+#define reg_wb_sram1_addr0   (*(volatile uint32_t*) 0x30100000)
 // Define SRAM BLK 1 Addr 1
-#define reg_wb_sram1_addr1   (*(volatile uint32_t*)0x30100004)
+#define reg_wb_sram1_addr1   (*(volatile uint32_t*) 0x30100004)
 
 // Define WB IO Peripheral Addr
-#define reg_wb_io      (*(volatile uint32_t*)0x30800000) // Not used!!!
+#define reg_wb_io            (*(volatile uint32_t*) 0x30800000) // Not used!!!
 
 
 
@@ -67,6 +67,9 @@ void set_registers() {
 
 
 void comm_sram_wb(int address, int block) {
+    // Set default IO Peripheral
+    reg_wb_io  = 0x00000000;
+    int io_out = 0x00000000;
 
     for (int i=0; i<2; i++) {
         int ram_out;
@@ -78,6 +81,15 @@ void comm_sram_wb(int address, int block) {
         } else {
             // Write to address 1
             reg_wb_sram0_addr1 = i;
+        }
+
+        // Toggle IO Peripheral
+        if (io_out == 0xffffffff) {
+            reg_wb_io = 0x00000000;
+            io_out    = 0x00000000;
+        } else {
+            reg_wb_io = 0xffffffff;
+            io_out    = 0xffffffff;
         }
 
         // Delay
@@ -99,9 +111,6 @@ void comm_sram_wb(int address, int block) {
 
         // Send SRAM data to GPIO
         reg_gpio_out = ram_out;
-
-        // Delay
-        delay(5000000);
     }
 }
 
@@ -138,13 +147,13 @@ void main()
         comm_sram_wb(/*ADDR*/ 0, /*SRAM BLK*/ 0);
 
         // Write to Addr 0, Read from Blk 1
-        comm_sram_wb(/*ADDR*/ 0, /*SRAM BLK*/ 1);
+        // comm_sram_wb(/*ADDR*/ 0, /*SRAM BLK*/ 1);
 
         // Write to Addr 1, Read from Blk 0
-        comm_sram_wb(/*ADDR*/ 1, /*SRAM BLK*/ 0);
+        // comm_sram_wb(/*ADDR*/ 1, /*SRAM BLK*/ 0);
 
         // Write to Addr 1, Read from Blk 1
-        comm_sram_wb(/*ADDR*/ 1, /*SRAM BLK*/ 1);
+        // comm_sram_wb(/*ADDR*/ 1, /*SRAM BLK*/ 1);
 
 	}
 
