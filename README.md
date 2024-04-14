@@ -59,3 +59,12 @@ $ cd firmware/sram_firmware
 $ make clean flash_nucleo
 ```
 This will delete old compiled files, recompile the firmware and upload to Caravel SoC.
+
+- 
+
+
+## Findings
+| Part         | Write | Read |
+| ------------ | ----- | ---- |
+| SRAM0 Port 0 | <ul><li> - [x] . </li></ul> | - [x] . |
+| SRAM0 Port 1 | <ul><li> - [x] . </li></ul> | - [x] . |
