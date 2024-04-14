@@ -62,6 +62,10 @@ This will delete old compiled files, recompile the firmware and upload to Carave
 
 
 ## Findings
+
+> Only IO Pin 0 (`reg_mprj_io_0`), IO Pin 37 (`reg_mprj_io_37`), and Management-Only GPIO PIN (`reg_gpio_out`) work. All other GPIOs don't!
+
+
 | Part            | Write              | Read               |
 | --------------- | ------------------ | ------------------ |
 | SRAM Blk/Port 0 | :white_check_mark: | :white_check_mark: |
