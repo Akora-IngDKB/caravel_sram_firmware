@@ -65,6 +65,6 @@ This will delete old compiled files, recompile the firmware and upload to Carave
 
 ## Findings
 | Part         | Write | Read |
-| ------------ | ----- | ---- |
+| ------------ | --------------------------- | ---- |
 | SRAM0 Port 0 | <ul><li> - [x] . </li></ul> | - [x] . |
-| SRAM0 Port 1 | <ul><li> - [x] . </li></ul> | - [x] . |
+| SRAM0 Port 1 | <ul><li> - [x] </li></ul> | - [x] . |
