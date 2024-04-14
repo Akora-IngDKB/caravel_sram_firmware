@@ -1,6 +1,6 @@
 # SRAM Firmware for Caravel SRAM Test Chip
 
-## Caravel SRAM Test Chip [<sup>ref</sup>](https://github.com/mtomlin5/caravel_sram_test)
+## Caravel SRAM Test Chip [<sup>[Design Details]</sup>](https://github.com/mtomlin5/caravel_sram_test)
 This is a simple project connecting a 256x32 SRAM block to the wishbone interface for testing. The SRAM block is directly connected to the wishbone bus at address 0x3000000. An additional peripheral was made to write to the io ports when address 0x30008000 is written to.
 
 
