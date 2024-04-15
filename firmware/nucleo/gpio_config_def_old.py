@@ -17,7 +17,7 @@ gpio_l = [
 ['IO[2]', H_DEPENDENT],
 ['IO[3]', H_DEPENDENT],
 ['IO[4]', H_DEPENDENT],
-['IO[5]', H_DEPENDENT],
+['IO[5]', H_INDEPENDENT],
 ['IO[6]', H_DEPENDENT],
 ['IO[7]', H_INDEPENDENT],
 ['IO[8]', H_UNKNOWN],
@@ -36,8 +36,8 @@ gpio_l = [
 # IO configuration chain was successful
 gpio_h = [
 ['IO[37]', H_NONE],
-['IO[36]', H_INDEPENDENT],
-['IO[35]', H_INDEPENDENT],
+['IO[36]', H_DEPENDENT],
+['IO[35]', H_DEPENDENT],
 ['IO[34]', H_INDEPENDENT],
 ['IO[33]', H_INDEPENDENT],
 ['IO[32]', H_INDEPENDENT],
@@ -47,11 +47,11 @@ gpio_h = [
 ['IO[28]', H_INDEPENDENT],
 ['IO[27]', H_INDEPENDENT],
 ['IO[26]', H_INDEPENDENT],
-['IO[25]', H_DEPENDENT],
+['IO[25]', H_INDEPENDENT],
 ['IO[24]', H_INDEPENDENT],
 ['IO[23]', H_INDEPENDENT],
 ['IO[22]', H_INDEPENDENT],
 ['IO[21]', H_INDEPENDENT],
 ['IO[20]', H_INDEPENDENT],
-['IO[19]', H_DEPENDENT],
+['IO[19]', H_INDEPENDENT],
 ]

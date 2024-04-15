@@ -71,3 +71,8 @@ This will delete old compiled files, recompile the firmware and upload to Carave
 | SRAM Blk/Port 0 | :white_check_mark: | :white_check_mark: |
 | SRAM Blk/Port 1 | N/A                | :x:                |
 | IO Peripheral   | :x:                | N/A                |
+
+### Issues
+1. Cannot drive all IO Pins. Only Pins 0 and 37 can be driven.
+2. Can write & read from SRAM Port 0 but cannot read from Port 1.
+3. Cannot verify write to IO Peripheral (IO Pins do not respond to write events).

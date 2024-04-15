@@ -17,7 +17,7 @@
 #define reg_wb_sram1_addr1   (*(volatile uint32_t*) 0x30100004)
 
 // Define WB IO Peripheral Addr
-#define reg_wb_io            (*(volatile uint32_t*) 0x30800000) // Not used!!!
+#define reg_wb_io            (*(volatile uint32_t*) 0x30800000)
 
 
 
@@ -67,9 +67,10 @@ void set_registers() {
 
 
 void comm_sram_wb(int address, int block) {
-    // Set default IO Peripheral
-    reg_wb_io  = 0x00000000;
-    int io_out = 0x00000000;
+    // Set default IO Peripheral bits to 0
+    reg_wb_io  = 0xffffffff;
+    // reg_wb_io  = 0x00000000;
+    // int io_out = 0x00000000;
 
     for (int i=0; i<2; i++) {
         int ram_out;
@@ -130,16 +131,16 @@ void main()
     // Configure GPIO registers
     gpio_config_io();
 
-    // Initialize serial transfer
-    reg_mprj_xfer = 1;
-    // Wait till data is completely shifted into GPIO controller
-    while (reg_mprj_xfer == 1);
-
     // Turn OFF Led at startup by driving the GPIO pin HIGH
     reg_gpio_out = 1;
 
     // Enable wishbone interface
     reg_wb_enable = 1;
+
+    // Apply IO Configuration
+    reg_mprj_xfer = 1;
+    // Wait till IO Configuration is complete
+    while (reg_mprj_xfer == 1);
 
 	while(1) {
 
