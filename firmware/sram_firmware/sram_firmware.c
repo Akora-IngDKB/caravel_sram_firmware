@@ -68,9 +68,8 @@ void set_registers() {
 
 void comm_sram_wb(int address, int block) {
     // Set default IO Peripheral bits to 0
-    reg_wb_io  = 0xffffffff;
-    // reg_wb_io  = 0x00000000;
-    // int io_out = 0x00000000;
+    reg_wb_io  = 0x00000000;
+    int io_out = 0x00000000;
 
     for (int i=0; i<2; i++) {
         int ram_out;
